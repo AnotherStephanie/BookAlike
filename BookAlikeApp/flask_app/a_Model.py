@@ -52,10 +52,10 @@ def getReviews(myID, myBook='11870085'):
     topReviews = dfSU[["rating", "review_text"]].dropna()
     topReviews = topReviews.head(3)
     
-    return ([topReviews["rating"].iloc[0], topReviews["review_text"].iloc[0], 
-             topReviews["rating"].iloc[1], topReviews["review_text"].iloc[1],
-              topReviews["rating"].iloc[2], topReviews["review_text"].iloc[2]])
-
+    #return ([topReviews["rating"].iloc[0], topReviews["review_text"].iloc[0], 
+    #         topReviews["rating"].iloc[1], topReviews["review_text"].iloc[1],
+    #          topReviews["rating"].iloc[2], topReviews["review_text"].iloc[2]])
+    return (topReviews["rating"].tolist(), topReviews["review_text"].tolist() )
 
     
     

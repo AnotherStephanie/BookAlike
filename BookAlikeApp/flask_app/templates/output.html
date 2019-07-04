@@ -34,15 +34,59 @@
 
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <!--<nav class="navbar navbar-inverse navbar-fixed-top">-->
+
+            
+    
+    
 
     <div class="container">
       <div class="starter-template">
         <h3>Your Book: <i>{{the_title}}</i></h3>
+         <p class="lead">Here are reviews from readers who are similar to you.
+        
+         <table class = table table-condensed table-striped">
+        <tbody>
+            <th></th>
+            <th> Reviewer </th>
+            <th> Rating </th>
+            <th> Review </th>
+            
+            <tr>
+            <th></th>
+            <td scope="col"> Reviewer 1</td>
+            <td scope="col"> {{reviewRatings0}} out of 5</td>
+            <td scope="col"> {{reviewTexts0}}</td>
+            </tr>
+            
+            <tr>
+            <th></th>
+            <td scope="col"> Reviewer 2 </td>
+            <td scope="col"> {{reviewRatings1}} out of 5 </td>
+            <td scope="col"> {{reviewTexts1}}</td>
+            </tr>
+            
+            <tr>
+            <th></th>
+            <td scope="col"> Reviewer 3 </td>
+            <td scope="col"> {{reviewRatings2}} out of 5 </td>
+            <td scope="col"> {{reviewTexts2}}</td>
+            </tr>
+               
+            
+        </tbody>
+    </table>  
+        
+        
+        
+        
+        
+        <!--
         <p class="lead">Here are reviews from readers who are similar to you.
-        <br> {% for item in the_result %}
+        <br> {% for item in reviewTexts1 %}
                 <li>{{item}}</li>
                 {% endfor %}
+        -->
         
         
         </p>
@@ -50,6 +94,12 @@
       <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
       <script src="static/js/bootstrap.min.js"></script>
      </div><!-- /.container -->
+
+
+
+
+
+
 
 
     <!-- Bootstrap core JavaScript
