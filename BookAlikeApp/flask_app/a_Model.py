@@ -13,11 +13,12 @@ import implicit
 
 def getTitle (myBook):
     bookList = pickle.load(open('flask_app/bookList.pkl', 'rb'))
+    
     myRow = bookList[bookList["book_id"]==int(myBook)]
     myTitle = myRow["title"].iloc[0]
     
-    
     return (myTitle)
+
 
 
 def getReviews(myID, myBook='11870085'):
@@ -28,13 +29,17 @@ def getReviews(myID, myBook='11870085'):
     userIndices = pickle.load(open('flask_app/userIndices.pkl', 'rb'))
     dfRev = pickle.load(open('flask_app/dfRev.pkl', 'rb'))#just coded reviews
     
-    #First, convert userID to model index
-    #userIndices=userIndices.reset_index()
-    myUserIndex=userIndices[userIndices['user_id_gr']==int(myID)].index#gets 3 but can't pass
-    #myUserIndex = myUserIndex[0]#gets it out of index object format, just an integer
+    #Here, check if user ID is indeed in list. If not, return error. 
     
-    #now get ranked list of similar users, as a data frame
+    
+    
+    #Convert userID to model index. Note, goodreads id must be recast as int
+    myUserIndex=userIndices[userIndices['user_id_gr']==int(myID)].index
+    
+    #now get ranked list of similar users, as a data frame;
+    #rankings are labeled by in-model indices
     similarU = model.similar_users(myUserIndex[0], N=len(userIndices)) #ranking as list
+    
     
     dfSU = pd.DataFrame(similarU, columns=["user_index", "score"])
     dfSU2 = userIndices.iloc[dfSU["user_index"]]
@@ -43,19 +48,22 @@ def getReviews(myID, myBook='11870085'):
     dfSU = dfSU3#ranking as data frame
     del([dfSU2, dfSU3])
     
+    #Book error
+    myBook = '4671'
     #now leave only reviews for coded readers, for myBook
     dfRevShort = dfRev[dfRev['book_id']==myBook]
     
     #merge onto ranked user data frame dfSU
     dfSU = pd.merge(left = dfSU, right = dfRevShort[["rating", "review_text", "user_code"]], 
                 on="user_code", how="left")
-    topReviews = dfSU[["rating", "review_text"]].dropna()
+    topReviews = dfSU[["user_id_gr", "rating", "review_text"]].dropna()
     topReviews = topReviews.head(3)
     
     #return ([topReviews["rating"].iloc[0], topReviews["review_text"].iloc[0], 
     #         topReviews["rating"].iloc[1], topReviews["review_text"].iloc[1],
     #          topReviews["rating"].iloc[2], topReviews["review_text"].iloc[2]])
-    return (topReviews["rating"].tolist(), topReviews["review_text"].tolist() )
+    return (topReviews["rating"].tolist(), topReviews["review_text"].tolist(),
+            topReviews["user_id_gr"].tolist())
 
     
     

@@ -8,7 +8,7 @@
     <meta name="description" content="BookAlike: Reviews from like-minded readers">
     <meta name="author" content="Stephanie Pulford">
     <link rel="icon" href="../../favicon.ico">
-    <link rel="canonical" href="https://getbootstrap.com/docs/3.3/examples/starter-template/">
+    <!--link rel="canonical" href="https://getbootstrap.com/docs/3.3/examples/starter-template/"-->
 
     <title>BookAlike: Reviews from like-minded readers</title>
 
@@ -38,7 +38,7 @@
       <div class="container">
 
           <div class="starter-template">
-              <h2>BookAlike: Reviews from like-minded readers</h2>
+              <h2 style="font-family:Roboto Slab;">BookAlike: Reviews from like-minded readers</h2>
               <br><p><i>An app based on the Goodreads social book review platform
               and the UCSD Social Book Graph</i></p><br>
           </div>
@@ -48,13 +48,19 @@
             <form  action="/output" method="GET">
               <div class="form-group">
                 <label for="myID">First, please enter your Goodreads ID number. </label>
-                <input input type="number" step="any" id="myBook" name='myID' placeholder="e.g., 10000533" value = "10233644">
+                <input input type="number" step="any" id="myBook" name='myID' value = "38974696">
+                <p style="color:grey">
+                <i>Your Goodreads ID can be found in the URL of your profile page.</i>
+                </p>
               </div>
               
               <form  action="/output" method="GET">
               <div class="form-group">
                 <label for="myBook">Next, please enter the Goodreads number of a book you might want to read. </label>
                 <input input type="number" step="any" id="myBook" name='myBook' placeholder="e.g., 10975"  value ="10975">
+              <p style="color:grey">
+              <i>Similarly, the book's ID can be found in the URL of its Goodreads page.</i>
+              </p>
               </div>
 
               

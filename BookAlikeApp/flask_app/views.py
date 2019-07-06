@@ -24,7 +24,7 @@ def recommender_input2():
 
 def recommender_output():
     myID = request.args.get('myID')
-    myBook = request.args.get('myBook')#really book ID from input
+    myBook = request.args.get('myBook')#really book ID from index
     #This next line is the issue.
     recommendResult = getReviews(myID, myBook)
     
@@ -32,9 +32,13 @@ def recommender_output():
     
     reviewRatings = recommendResult[0]
     reviewTexts=recommendResult[1]
+    grUsers = recommendResult[2]
     
     
     return render_template("output.html", 
+                           grUser0 = grUsers[0],
+                           grUser1 = grUsers[1],
+                           grUser2 = grUsers[2],
                            reviewRatings0 = reviewRatings[0],
                            reviewRatings1 = reviewRatings[1],
                            reviewRatings2 = reviewRatings[2],
@@ -44,7 +48,7 @@ def recommender_output():
                            the_title=titleResult)
     
 #def bookTitle_output():
-#    myBook = request.args.get('myBook')#really book ID from input
+#    myBook = request.args.get('myBook')#really book ID from index
 #    #titleResult = getTitle(myBook)
 #    titleResult = "O HAI!"
 #    
