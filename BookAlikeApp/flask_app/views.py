@@ -33,6 +33,7 @@ def recommender_output():
     reviewRatings = recommendResult[0]
     reviewTexts=recommendResult[1]
     grUsers = recommendResult[2]
+    mySubtitle = recommendResult[3]
     
     
     return render_template("output.html", 
@@ -45,7 +46,8 @@ def recommender_output():
                            reviewTexts0 = reviewTexts[0], 
                            reviewTexts1 = reviewTexts[1], 
                            reviewTexts2 = reviewTexts[2], 
-                           the_title=titleResult)
+                           the_title=titleResult,
+                           the_subtitle = mySubtitle)
     
 #def bookTitle_output():
 #    myBook = request.args.get('myBook')#really book ID from index
